@@ -72,7 +72,7 @@ class ItemRepository
     {
         try {
             DB::beginTransaction();
-            $itemStore  = Item::create([
+            $itemStore  = Item::update([
                 'name' => $request->name,
                 'category_id' => $request->category_id,
                 'user_id' =>  Auth::id(),
