@@ -15,6 +15,15 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->foreignId('category_id');
+            $table->foreignId('user_id');
+            $table->uuid('item_key')->unique();
+            $table->integer('price');
+            $table->string('description');
+            $table->string('user_name');
+            $table->string('phone');
+            $table->string('address');
             $table->timestamps();
         });
     }

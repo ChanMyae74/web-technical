@@ -3,6 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ItemController;
 
 use Inertia\Inertia;
 
@@ -26,12 +29,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
-
-});
+Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware('auth')->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -40,3 +38,23 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::middleware(['auth'])->prefix('dashboard/categories')->name('dashboard:categories:')->group(function() {
+    Route::get('/', [CategoryController::class, 'index'])->name('all');
+    Route::get('/create', [CategoryController::class, 'create'])->name('create');
+    Route::post('store', [CategoryController::class, 'store'])->name('store');
+    Route::get('edit/{category:category_key}', [CategoryController::class, 'edit'])->name('edit');
+    Route::post('update/{category:category_key}', [CategoryController::class, 'update'])->name('update');
+    Route::delete('destroy/{category:category_key}', [CategoryController::class, 'destroy'])->name('destroy');
+});
+    Route::middleware(['auth'])->prefix('dashboard/items')->name('dashboard:items:')->group(function() {
+        Route::get('/', [ItemController::class, 'index'])->name('all');
+        Route::get('/create', [ItemController::class, 'create'])->name('create');
+        Route::post('store', [ItemController::class, 'store'])->name('store');
+        Route::get('edit/{item:item_key}', [ItemController::class, 'edit'])->name('edit');
+        Route::put('update/{item:item_key}', [ItemController::class, 'update'])->name('update');
+        Route::delete('destroy/{item:item_key}', [ItemController::class, 'destroy'])->name('destroy');
+    });
+Route::middleware('auth')->prefix('dashboard/attachment')->group(function (){
+    Route::delete('destroy/{attachment:uuid}', [\App\Http\Controllers\AttachmentController::class,'destroy'])->name('attachment.destroy');
+});
