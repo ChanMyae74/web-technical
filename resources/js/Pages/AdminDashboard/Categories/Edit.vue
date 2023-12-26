@@ -120,7 +120,7 @@ const updateCategory = (param) => {
                                         <circle cx="9" cy="9" r="2"></circle>
                                         <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
                                     </svg>
-                                    <span class="mr-1 text-primary"> Upload a file
+                                    <span class="mr-1 text-primary"> Upload a file </span>
                                     <input
                                         id="photos"
                                         :multiple="true"
