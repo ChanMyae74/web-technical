@@ -120,7 +120,7 @@ const updateCategory = (param) => {
                                         <circle cx="9" cy="9" r="2"></circle>
                                         <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
                                     </svg>
-                                    <span class="mr-1 text-primary"> Upload a file </span> or drag and drop
+                                    <span class="mr-1 text-primary"> Upload a file
                                     <input
                                         id="photos"
                                         :multiple="true"
@@ -134,26 +134,9 @@ const updateCategory = (param) => {
                             </div>
                         </div>
                     </div>
-                    <!--                    <div class="mt-2 flex space-x-3">-->
-                    <!--                        <div class="py-3">-->
-                    <!--                            <Switch-->
-                    <!--                                v-model="categoryForm.is_publish"-->
-                    <!--                                :class="categoryForm.is_publish ? 'bg-indigo-900' : 'bg-indigo-700'"-->
-                    <!--                                class="relative inline-flex h-[21px] w-[47px] shrink-0 cursor-pointer rounded-full border-2-->
-                    <!--                             border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"-->
-                    <!--                            >-->
-                    <!--                             <span-->
-                    <!--                                 aria-hidden="true"-->
-                    <!--                                 :class="categoryForm.is_publish ? 'translate-x-9' : 'translate-x-0'"-->
-                    <!--                                 class="pointer-events-none inline-block h-[21px] w-[21px] transform rounded-full bg-white-->
-                    <!--                                 shadow-lg ring-0 transition duration-200 ease-in-out"-->
-                    <!--                             />-->
-                    <!--                            </Switch>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
                     <PrimaryButton :class="{ 'opacity-25': categoryForm.processing }"
                                    :disabled="categoryForm.processing" @click="updateCategory(category)" class="mb-2">
-                        Add Category
+                        Update Category
                     </PrimaryButton>
                 </div>
             </div>
