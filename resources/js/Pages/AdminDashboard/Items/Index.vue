@@ -60,7 +60,7 @@ export default {
                     </span>
             </BreadcrumbItem>
         </Breadcrumb>
-        <div class="flex justify-end">
+        <div class="flex justify-end mr-5 ">
             <a :href="route('dashboard:items:create')"
                class="transition duration-200 border inline-flex items-center justify-center py-2 px-3 rounded-md font-medium cursor-pointer bg-indigo-500 hover:bg-indigo-400
            focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus-visible:outline-none
@@ -76,18 +76,17 @@ export default {
                 Add Item
             </a>
         </div>
-
         <div class="p-6 text-gray-900">
             <div class="">
-                <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div class="mb-4 max-w-xs">
+                <div class="mx-auto w-auto">
+                    <div class="mb-4">
                         <input type="search" v-model="params.search" aria-label="Search" placeholder="Search..."
-                               class="block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"/>
+                               class="block w-[450px] rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"/>
                     </div>
 
                     <div class="overflow-hidden bg-white shadow-md sm:rounded-lg">
                         <div class="flex flex-col">
-                            <div class="overflow-x-auto -my-2 sm:-mx-6 lg:-mx-8">
+                            <div class="overflow-x-auto -my-2  lg:-mx-8">
                                 <div class="inline-block py-2 min-w-full align-middle sm:px-6 lg:px-8">
                                     <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
 

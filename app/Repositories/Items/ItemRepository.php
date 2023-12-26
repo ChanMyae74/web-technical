@@ -72,7 +72,7 @@ class ItemRepository
     {
         try {
             DB::beginTransaction();
-            $itemStore  = Item::update([
+            $item_param = [
                 'name' => $request->name,
                 'category_id' => $request->category_id,
                 'user_id' =>  Auth::id(),
@@ -81,9 +81,9 @@ class ItemRepository
                 'user_name' => $request->user_name,
                 'phone' => phone($request->phone)->formatE164(),
                 'address' => $request->address,
-
-            ]);
-            $this->handleAttachments($request, $itemStore, $attachment);
+            ];
+            $item->update($item_param);
+            $this->handleAttachments($request, $item, $attachment);
             return 'success';
         } catch (QueryException $queryException) {
             dd($queryException);

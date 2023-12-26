@@ -21,24 +21,23 @@ class ItemController extends Controller
     {
         return $this->itemRepository = $itemRepository;
     }
+
     public function index(Request $request)
     {
         $query = Item::query();
 
         if (request('search')) {
-            $query->where('name', 'LIKE', '%'.request('search').'%');
-            $query->where('category', 'LIKE', '%'.request('search').'%');
-            $query->where('description', 'LIKE', '%'.request('search').'%');
-            $query->where('price', 'LIKE', '%'.request('search').'%');
-                 $query->where('user_name', 'LIKE', '%'.request('search').'%');
+            $query->where('name', 'LIKE', '%' . request('search') . '%')
+                ->orWhere('category_id', 'LIKE', '%' . request('search') . '%')
+                ->orWhere('description', 'LIKE', '%' . request('search') . '%')
+                ->orWhere('price', 'LIKE', '%' . request('search') . '%')
+                ->orWhere('user_name', 'LIKE', '%' . request('search') . '%');
         }
-
-
         if (request()->has(['field', 'direction'])) {
             $query->orderBy(request('field'), request('direction'));
         }
         return Inertia::render('AdminDashboard/Items/Index', [
-            'items' => $query->paginate($request->paginate ?? config('setting.paginate_count'))->withQueryString(),
+            'items' => $query->paginate(7 ?? config('setting.paginate_count'))->withQueryString(),
             'category' => Category::select('id', 'name')->get(),
             'filters' => request()->all(['search', 'field', 'direction'])
         ]);
@@ -56,29 +55,32 @@ class ItemController extends Controller
         $result = $this->itemRepository->store($request, $item, $attachment);
         if (!is_null($result)) {
             DB::commit();
-            return redirect()->route('dashboard:items:all')->with('success', 'Add Item Successfully.');
+            return redirect()->route('dashboard:items:all')->with('message', 'Add Item Successfully.');
         }
         DB::rollBack();
         return redirect()->route('dashboard:items:all')->with('error', 'Something want wrong.');
     }
+
     public function edit(Item $item)
     {
-        return Inertia::render('AdminDashboard/items/Edit', [
+        return Inertia::render('AdminDashboard/Items/Edit', [
                 'item' => $item,
-                'categories' => Category::select('id', 'name as label')->get()
+                'categories' => Category::select('id', 'name')->get()
             ]
         );
     }
+
     public function update(UpdateRequest $request, Item $item, Attachment $attachment)
     {
         $result = $this->itemRepository->update($request, $item, $attachment);
         if (!is_null($result)) {
             DB::commit();
-            return redirect()->route('dashboard:items:all')->with('success', 'Item Updated.');
+            return redirect()->route('dashboard:items:all')->with('message', 'Item Updated.');
         }
         DB::rollBack();
         return redirect()->route('dashboard:items:all')->with('error', 'Something want wrong.');
     }
+
     public function destroy(Item $item, Attachment $attachment)
     {
 

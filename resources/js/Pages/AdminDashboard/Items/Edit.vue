@@ -11,21 +11,22 @@ import MazPhoneNumberInput from 'maz-ui/components/MazPhoneNumberInput'
 import {ref} from "vue";
 
 const results = ref();
-defineProps({
+const props = defineProps({
     item: {
         type: Object,
         default: {}
     },
+    categories: []
 });
 
 const itemForm = useForm({
-    name:props.item.name,
+    name: props.item.name,
     category_id : props.item.category_id,
-    price:props.item.price,
-    description:props.item.description,
-    user_name:props.item.user_name,
-    phone:props.item.phone,
-    address:props.item.address,
+    price: props.item.price,
+    description: props.item.description,
+    user_name: props.item.user_name,
+    phone: props.item.phone,
+    address:  props.item.address,
     attachment: []
 });
 
@@ -33,7 +34,7 @@ const updateItem = (param) => {
     if (!results.value.isValid){
         return alert('Frontend Invalid Phone Number ')
     }
-    itemForm.post(route('dashboard:categories:update',param), {
+    itemForm.post(route('dashboard:items:update',param), {
         preserveScroll: true,
         onSuccess: () => {
             itemForm.reset();
@@ -71,12 +72,12 @@ const removeImage = (image, index) => {
             </BreadcrumbItem>
             <BreadcrumbItem :to="route('dashboard:items:create')">
                     <span class="text-gray-700 hover:text-sky-500 duration-300">
-                        Add Item
+                        Update Item
                     </span>
             </BreadcrumbItem>
         </Breadcrumb>
         <div>
-            <h1 class="w-full border bg-gray-300 rounded-lg px-3 py-2">Add Items</h1>
+            <h1 class="w-full bg-gray-300 rounded-lg px-3 py-2">Update Items</h1>
             <div class="flex flex-row">
                 <div class="px-2">
                     <h1 class="w-full rounded-lg px-3 py-2">Item Information</h1>
@@ -180,7 +181,7 @@ const removeImage = (image, index) => {
                                             id="photos"
                                             :multiple="true"
                                             class="disabled:bg-slate-100 disabled:cursor-not-allowed
-                                      [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition
+                                      [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed transition
                                       duration-200 ease-in-out text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4
                                       focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 flex-1 absolute top-0 left-0 w-full h-full opacity-0"
                                             name="attachment"
@@ -216,7 +217,6 @@ const removeImage = (image, index) => {
                                     @update="results = $event"
                                     autocomplete="off"
                                 />
-                                <code>{{results}}</code>
                                 <InputError class="mb-2" :message="$page.props.errors.phone"/>
                             </div>
                         </div>
@@ -237,7 +237,7 @@ const removeImage = (image, index) => {
         </div>
         <PrimaryButton :class="{ 'opacity-25': itemForm.processing }"
                        :disabled="itemForm.processing" @click="updateItem(item)" class="mb-2 mx-5">
-            Add Item
+            Update Item
         </PrimaryButton>
     </AuthenticatedLayout>
 </template>
@@ -245,3 +245,5 @@ const removeImage = (image, index) => {
 <style scoped>
 
 </style>
+
+

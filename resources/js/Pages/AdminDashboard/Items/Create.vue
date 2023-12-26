@@ -76,7 +76,7 @@ const removeImage = (image, index) => {
             </BreadcrumbItem>
         </Breadcrumb>
         <div>
-            <h1 class="w-full border bg-gray-300 rounded-lg px-3 py-2">Add Items</h1>
+            <h1 class="w-full bg-gray-300 rounded-lg px-3 py-2">Add Items</h1>
             <div class="flex flex-row">
                 <div class="px-2">
                     <h1 class="w-full rounded-lg px-3 py-2">Item Information</h1>
@@ -180,7 +180,7 @@ const removeImage = (image, index) => {
                                             id="photos"
                                             :multiple="true"
                                             class="disabled:bg-slate-100 disabled:cursor-not-allowed
-                                      [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition
+                                      [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed transition
                                       duration-200 ease-in-out text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4
                                       focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 flex-1 absolute top-0 left-0 w-full h-full opacity-0"
                                             name="attachment"
@@ -216,7 +216,6 @@ const removeImage = (image, index) => {
                                     @update="results = $event"
                                     autocomplete="off"
                                 />
-                                <code>{{results}}</code>
                                 <InputError class="mb-2" :message="$page.props.errors.phone"/>
                             </div>
                         </div>

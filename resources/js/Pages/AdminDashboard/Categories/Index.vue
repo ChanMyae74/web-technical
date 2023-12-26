@@ -14,8 +14,6 @@ export default {
         BreadcrumbItem,
         MasterPagination,
         Link
-
-
     },
     props: {
         categories: Object,
@@ -40,7 +38,6 @@ export default {
         params: {
             handler: throttle(function () {
                 let params = pickBy(this.params);
-
                 this.$inertia.get(this.route('dashboard:categories:all'), params, { replace: true, preserveState: true });
             }, 150),
                 deep: true,

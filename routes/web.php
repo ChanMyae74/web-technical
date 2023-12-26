@@ -21,12 +21,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return Inertia::render('HomeView');
 });
 
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware('auth')->name('dashboard');
@@ -52,7 +47,7 @@ Route::middleware(['auth'])->prefix('dashboard/categories')->name('dashboard:cat
         Route::get('/create', [ItemController::class, 'create'])->name('create');
         Route::post('store', [ItemController::class, 'store'])->name('store');
         Route::get('edit/{item:item_key}', [ItemController::class, 'edit'])->name('edit');
-        Route::put('update/{item:item_key}', [ItemController::class, 'update'])->name('update');
+        Route::post('update/{item:item_key}', [ItemController::class, 'update'])->name('update');
         Route::delete('destroy/{item:item_key}', [ItemController::class, 'destroy'])->name('destroy');
     });
 Route::middleware('auth')->prefix('dashboard/attachment')->group(function (){

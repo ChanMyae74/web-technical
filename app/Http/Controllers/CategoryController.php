@@ -31,7 +31,7 @@ class CategoryController extends Controller
         }
         return Inertia::render('AdminDashboard/Categories/Index',
         [
-            'categories' => $query->paginate($request->paginate ?? config('setting.paginate_count'))->withQueryString(),
+            'categories' => $query->paginate(7 ?? config('setting.paginate_count'))->withQueryString(),
             'filters' => request()->all(['search', 'field', 'direction'])
         ]);
 
@@ -45,7 +45,7 @@ class CategoryController extends Controller
         $result = $this->categoryRepository->store($request, $attachment);
         if (!is_null($result)) {
             DB::commit();
-            return redirect()->route('dashboard:categories:all')->with('success', 'Add Category Successfully.');
+            return redirect()->route('dashboard:categories:all')->with('message', 'Add Category Successfully.');
         }
         DB::rollBack();
         return redirect()->route('dashboard:categories:all')->with('error', 'Something want wrong.');
@@ -63,7 +63,7 @@ class CategoryController extends Controller
         $result = $this->categoryRepository->update($request, $category, $attachment);
         if (!is_null($result)) {
             DB::commit();
-            return redirect()->route('dashboard:categories:all')->with('success', 'Category Updated.');
+            return redirect()->route('dashboard:categories:all')->with('message', 'Category Updated.');
         }
         DB::rollBack();
         return redirect()->route('dashboard:categories:all')->with('error', 'Something want wrong.');

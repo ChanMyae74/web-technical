@@ -6,7 +6,7 @@ import InputLabel from "@/Components/InputLabel.vue";
 import InputError from "@/Components/InputError.vue";
 import TextInput from "@/Components/TextInput.vue";
 import {Head, useForm} from "@inertiajs/vue3";
-import {Breadcrumb, BreadcrumbItem} from "view-ui-plus";
+import {Breadcrumb, BreadcrumbItem, Switch} from "view-ui-plus";
 import {ref} from "vue";
 
 const categoryForm = useForm({
@@ -118,7 +118,7 @@ const removeImage = (image, index) => {
                                         id="photos"
                                         :multiple="true"
                                         class="disabled:bg-slate-100 disabled:cursor-not-allowed
-                                      [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition
+                                      [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed transition
                                       duration-200 ease-in-out text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4
                                       focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 flex-1 absolute top-0 left-0 w-full h-full opacity-0"
                                         name="attachment"
@@ -127,23 +127,7 @@ const removeImage = (image, index) => {
                             </div>
                         </div>
                     </div>
-<!--                    <div class="mt-2 flex space-x-3">-->
-<!--                        <div class="py-3">-->
-<!--                            <Switch-->
-<!--                                v-model="categoryForm.is_publish"-->
-<!--                                :class="categoryForm.is_publish ? 'bg-indigo-900' : 'bg-indigo-700'"-->
-<!--                                class="relative inline-flex h-[21px] w-[47px] shrink-0 cursor-pointer rounded-full border-2-->
-<!--                             border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"-->
-<!--                            >-->
-<!--                             <span-->
-<!--                                 aria-hidden="true"-->
-<!--                                 :class="categoryForm.is_publish ? 'translate-x-9' : 'translate-x-0'"-->
-<!--                                 class="pointer-events-none inline-block h-[21px] w-[21px] transform rounded-full bg-white-->
-<!--                                 shadow-lg ring-0 transition duration-200 ease-in-out"-->
-<!--                             />-->
-<!--                            </Switch>-->
-<!--                        </div>-->
-<!--                    </div>-->
+
                     <PrimaryButton :class="{ 'opacity-25': categoryForm.processing }"
                                    :disabled="categoryForm.processing" @click="createCategory" class="mb-2">
                         Add Category
@@ -155,102 +139,5 @@ const removeImage = (image, index) => {
 </template>
 
 <style scoped>
-.ql-editor {
-    height: 500px;
-}
 
-.ivu-upload-drag {
-    --tw-bg-opacity: 1;
-    background-color: rgba(17 24 39 / var(--tw-bg-opacity));
-    border: none;
-}
-
-.ivu-upload-drag:hover {
-    border: none;
-}
-
-.ivu-select-selection {
-    --tw-bg-opacity: 1;
-    background-color: rgba(21 31 50 1 / var(--tw-bg-opacity));
-}
-
-.ivu-select-selection {
-    border: 1px solid #374151;
-    border-radius: 3px;
-}
-
-.ivu-select-dropdown {
-    --tw-bg-opacity: 1;
-    background-color: rgb(17 24 39 / var(--tw-bg-opacity));
-}
-
-.ivu-select-item:hover {
-    background-color: rgba(65, 132, 228, 0.4);
-    color: white;
-    transition: 500ms;
-    border-radius: 2px;
-}
-
-.ivu-tag {
-    display: inline-block;
-    height: 22px;
-    line-height: 22px;
-    margin: 2px 4px 2px 0;
-    padding: 0 8px;
-    --tw-bg-opacity: 1;
-    background-color: rgba(21 31 50 1 / var(--tw-bg-opacity));
-    border: 1px solid #374151;
-    border-radius: 3px;
-    font-size: 12px;
-    vertical-align: middle;
-    opacity: 1;
-    overflow: hidden;
-}
-
-.ivu-tag-text {
-    color: white;
-}
-
-.ivu-select-multiple .ivu-select-item-selected {
-    color: rgba(45, 140, 240, 0.9);
-    background: rgba(65, 132, 228, 0.4);
-}
-
-.ivu-tag .ivu-icon-ios-close {
-    display: inline-block;
-    font-size: 14px;
-    -webkit-transform: scale(1.42857143) rotate(0);
-    -ms-transform: scale(1.42857143) rotate(0);
-    transform: scale(1.42857143) rotate(0);
-    cursor: pointer;
-    margin-left: 2px;
-    color: white;
-    opacity: 0.66;
-    position: relative;
-    top: -1px;
-}
-
-.ivu-select-multiple .ivu-select-item-focus,
-.ivu-select-multiple .ivu-select-item-selected:hover {
-    background-color: rgba(65, 132, 228, 0.4);
-}
-
-.ivu-select-multiple .ivu-select-item-focus,
-.ivu-select-multiple .ivu-select-item-selected:hover {
-    --tw-bg-opacity: 1;
-    background-color: rgb(17 24 39 / var(--tw-bg-opacity));
-}
-
-.ck-editor__editable {
-    min-height: 300px;
-    border-bottom-left-radius: 0.375rem !important;
-    border-bottom-right-radius: 0.375rem !important;
-}
-
-.ivu-input {
-    --tw-bg-opacity: 1;
-    background-color: rgba(21 31 50 1 / var(--tw-bg-opacity));
-    border: 1px solid #374151;
-    border-radius: 3px;
-}
 </style>

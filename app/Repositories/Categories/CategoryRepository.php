@@ -63,12 +63,13 @@ class CategoryRepository
     {
         try {
             DB::beginTransaction();
-            Category::create([
+//
+            $category_param = [
                 'name' => $request->name,
                 'user_id' =>  Auth::id(),
                 'is_publish' => $request->is_publish ? 'true' : 'false',
-            ]);
-
+            ];
+            $category->update($category_param);
             $this->handleAttachments($request, $category, $attachment);
             return 'success';
         } catch (QueryException $queryException) {

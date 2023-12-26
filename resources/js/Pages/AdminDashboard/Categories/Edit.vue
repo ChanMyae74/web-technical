@@ -13,25 +13,14 @@ const props = defineProps({
     category: {
         type: Object,
         default: {}
-    },
-
-
+    }
 });
 const categoryForm = useForm({
-    name: props.category.name ,
+    name: props.category.name,
     is_publish: false,
     attachment: []
 });
 
-const updateCategory = (param) => {
-    categoryForm.post(route('dashboard:categories:edit',param ), {
-        preserveScroll: true,
-        onSuccess: () => {
-            categoryForm.reset();
-            photos.value = [];
-        }
-    });
-}
 const photos = ref([]);
 const handleFileChange = (event) => {
     categoryForm.attachment = event.target.files;
@@ -47,15 +36,6 @@ const handleFileChange = (event) => {
 const removeImage = (image, index) => {
     photos.value.splice(index, 1)
     handleFileChange();
-}
-const destroyPhoto = (data) => {
-    categoryForm.delete(route('attachment.destroy', data), {
-        preserveScroll: true,
-        onSuccess: () => {
-            categoryForm.reset();
-            photos.value = [];
-        }
-    });
 }
 
 const updateCategory = (param) => {
@@ -145,7 +125,7 @@ const updateCategory = (param) => {
                                         id="photos"
                                         :multiple="true"
                                         class="disabled:bg-slate-100 disabled:cursor-not-allowed
-                                      [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition
+                                      [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed transition
                                       duration-200 ease-in-out text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4
                                       focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 flex-1 absolute top-0 left-0 w-full h-full opacity-0"
                                         name="attachment"

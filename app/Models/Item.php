@@ -24,7 +24,7 @@ class Item extends Model
         'address'
     ];
     protected $with = [
-        'item_photo',
+        'item_photo','category'
     ];
 
     public function category(): BelongsTo

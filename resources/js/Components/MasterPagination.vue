@@ -1,26 +1,29 @@
 <template>
     <div class="flex flex-wrap justify-center gap-x-2">
-        <a
+        <Link
             v-for="link in links"
             :class="{
-                'leading-4 flex h-8 items-center justify-center rounded-xl border px-3 py-2 text-2xs font-semibold text-blue-400 bg-blue/7 border-blue/75':
+                'leading-4 flex h-8 items-center justify-center rounded-xl border px-3 py-2 text-2xs text-blue-500 duration-300 font-bold bg-blue/7 border-blue/75':
                     link.active,
-                'leading-4 flex h-8 items-center justify-center rounded-xl px-3 py-2 text-xs font-semibold text-white bg-blue/7 hover:border-blue-400 focus:text-blue':
+                'leading-4 flex h-8 items-center justify-center rounded-xl hover:border-blue-500 px-3 py-2 text-xs font-bold hover:text-blue-500 duration-300 bg-blue/7':
                     link,
             }"
             :href="link.url"
         >
             <span v-html="link.label"></span>
-        </a>
+        </Link>
     </div>
 </template>
 
 <script>
+import {Link} from '@inertiajs/vue3';
+
 export default {
-    name: 'MasterPagination',
+    name: "MasterPagination",
     props: {
         links: Array,
     },
+    components: {Link}
 };
 </script>
 
