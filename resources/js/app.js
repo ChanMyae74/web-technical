@@ -8,10 +8,11 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import DataTablesLib from 'datatables.net';
 import DataTable from 'datatables.net-vue3';
 import 'maz-ui/styles';
+import CKEditor from '@ckeditor/ckeditor5-vue';
 
 DataTable.use(DataTablesLib);
 
-const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
+const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Web_Technical';
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -21,7 +22,9 @@ createInertiaApp({
             .use(plugin)
             .use(ZiggyVue, Ziggy)
             .component('DataTable', DataTable)
+            .use( CKEditor )
             .mount(el);
+
 
     },
     progress: {

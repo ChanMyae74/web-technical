@@ -9,6 +9,7 @@ import {Head, useForm} from "@inertiajs/vue3";
 import {Breadcrumb, BreadcrumbItem} from "view-ui-plus";
 import MazPhoneNumberInput from 'maz-ui/components/MazPhoneNumberInput'
 import {ref} from "vue";
+import * as editor from '@ckeditor/ckeditor5-build-classic';
 
 const results = ref();
 const props = defineProps({
@@ -122,9 +123,12 @@ const removeImage = (image, index) => {
                         <InputLabel for="description" value="Description"/>
                         <div class="mt-1">
                             <div class="my-2">
-                                <TextInput id="description" v-model="itemForm.description" autocomplete="description"
-                                           class="mt-1 block w-full"
-                                           type="text"/>
+                                <div id="app">
+                                    <ckeditor
+                                        v-model="itemForm.description"
+                                        :editor="editor"
+                                    ></ckeditor>
+                                </div>
                                 <InputError class="mb-2" :message="$page.props.errors.description"/>
                             </div>
                         </div>

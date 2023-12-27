@@ -232,7 +232,7 @@ export default {
                                                     {{ item.category?.name }}
                                                 </td>
                                                 <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap">
-                                                    {{ item.description }}
+                                                    <div class="content" v-html="item.description"></div>
                                                 </td>
                                                 <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap">
                                                    $ {{ item.price }}
